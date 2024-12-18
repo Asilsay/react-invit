@@ -1,7 +1,6 @@
 import { FC, useState } from 'react';
-import theLogos from '/ef logos.png';
 import { Button } from '@/components/ui/button';
-import bgAtas from '../public/unsplash-image.jpg';
+import bgAtas from '../public/bg-image.png';
 import logoW from '../public/logowhite.png';
 
 import bgifc from '@/assets/bg-test-1.png';
@@ -46,20 +45,11 @@ function App() {
               {/* SECTION WELLCOME*/}
 
               <section
-                className={`snap-start min-h-screen flex flex-col justify-center items-center w-full  border bg-cover bg-bottom bg-no-repeat bg-[]`}
+                className={`snap-start min-h-screen flex flex-col justify-between items-center w-full border bg-bottom bg-no-repeat bg-cover`}
                 style={{ backgroundImage: `url(${bgifc})` }}
               >
-                <div className="flex flex-col items-center justify-center">
-                  <p className="text-lg font-inter font-bold">THE WEDDING OF</p>
-                  <p className="font-bold font-gwendolyn text-7xl">Ema & Fasya</p>
-                  <p className="text-lg font-inter">11.01.2025</p>
-
-                  <img
-                    src={theLogos}
-                    alt=""
-                    className="w-20 mt-28"
-                  />
-                </div>
+                {' '}
+                <div></div>
               </section>
 
               {/* SECTION AYAT */}
