@@ -5,6 +5,8 @@ import logoW from '../public/logowhite.png';
 
 import bgifc from '@/assets/bg-test-1.png';
 import dos from '@/assets/bg-text-2.png';
+import empic from '@/assets/fs-2.png';
+import faspic from '@/assets/fs-1.png';
 import { SendHorizonal } from 'lucide-react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 
@@ -74,14 +76,47 @@ function App() {
               </section>
               {/* SECTION MEMPELAI */}
 
-              <section className="snap-start min-h-screen flex flex-col justify-center items-center">
-                <h2 className="text-3xl font-bold mb-4">Mempelai</h2>
-                <div></div>
-                <p className="text-md mb-4">Please let us know if you can attend.</p>
+              <section
+                style={{ backgroundImage: `url(${dos})` }}
+                className="snap-start min-h-screen flex flex-col justify-center items-center"
+              >
+                <h2 className="text-3xl font-bold ">Mempelai</h2>
+                <div className="w-full flex flex-col items-center gap-3">
+                  <div className="flex flex-col items-center justify-center font-inter">
+                    <img
+                      src={empic}
+                      alt=""
+                      className="w-2/3"
+                    />
+                    <p className="text-4xl font-semibold font-gwendolyn">Ema Safitri</p>
+                    <p className="text-base mt-2 font-medium text-center">
+                      Putri dari Bapak Ambarwat dan Ibu Samiyem
+                    </p>
+                  </div>
+                  <div className="flex w-full flex-row items-center justify-center gap-4">
+                    <hr className="border-[1px] w-1/3 border-amber-950" />
+                    <p className="text-4xl font-gwendolyn font-semibold">dan </p>
+                    <hr className="border-[1px] w-1/3 border-amber-950" />
+                  </div>
+                  <div className="flex flex-col items-center justify-center font-inter">
+                    <img
+                      src={faspic}
+                      alt=""
+                      className="w-2/3"
+                    />
+                    <p className="text-4xl font-semibold font-gwendolyn">Labaik Fasya Asil Say</p>
+                    <p className="text-base mt-2 font-medium text-center">
+                      Putra dari Bapak Mustaqim dan Ibu Siti Rokhimah
+                    </p>
+                  </div>
+                </div>
               </section>
               {/* SECTION ACARA*/}
 
-              <section className="snap-start min-h-screen flex flex-col justify-center items-center">
+              <section
+                style={{ backgroundImage: `url(${dos})` }}
+                className="snap-start min-h-screen flex flex-col justify-center items-center"
+              >
                 <h2 className="text-3xl font-bold mb-4">Resepsi Pernikahan</h2>
                 <p className="text-md mb-4">Please let us know if you can attend.</p>
                 <button className="bg-primary text-white rounded px-4 py-2">RSVP Now</button>
@@ -89,14 +124,20 @@ function App() {
 
               {/* SECTION RSVP*/}
 
-              <section className="snap-start min-h-screen flex flex-col justify-center items-center">
+              <section
+                style={{ backgroundImage: `url(${dos})` }}
+                className="snap-start min-h-screen flex flex-col justify-center items-center"
+              >
                 <h2 className="text-3xl font-bold mb-4">RSVP</h2>
                 <p className="text-md mb-4">Please let us know if you can attend.</p>
                 <button className="bg-primary text-white rounded px-4 py-2">RSVP Now</button>
               </section>
               {/* SECTION TERIMAKASIH */}
 
-              <section className="snap-start min-h-screen flex flex-col justify-center items-center">
+              <section
+                style={{ backgroundImage: `url(${dos})` }}
+                className="snap-start min-h-screen flex flex-col justify-center items-center"
+              >
                 <h2 className="text-3xl font-bold mb-4">RSVP</h2>
                 <p className="text-md mb-4">Please let us know if you can attend.</p>
                 <button className="bg-primary text-white rounded px-4 py-2">RSVP Now</button>
