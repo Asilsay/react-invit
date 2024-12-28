@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import bgAtas from '../public/bg-image.png';
-import logoW from '../public/logowhite.png';
+import logoW from '../public/logo-white.png';
 
 import bgifc from '@/assets/bg-test-1.png';
 import dos from '@/assets/bg-text-2.png';
@@ -58,21 +58,24 @@ function App() {
 
               <section
                 style={{ backgroundImage: `url(${dos})` }}
-                className="snap-start min-h-screen flex flex-col justify-evenly items-center gap-3"
+                className="snap-start min-h-screen flex flex-col justify-center items-center gap-3 "
               >
-                <h2 className="text-md font-inter text-center">
-                  Dari Anas bin Malik radhiyallahu 'anhu, ia berkata bahwa Rasulullah shallallahu
-                  'alaihi wa sallam bersabda,
-                </h2>
-                <p className="text-4xl font-noto text-center leading-loose">
-                  إِذَا تَزَوَّجَ الْعَبْدُ فَقَدْ كَمُلَ نِصْفَ الدِّينِ ، فَلْيَتَّقِ اللَّهَ فِي
-                  النِّصْفِ الْبَاقِي
-                </p>
-                <p className="text-md text-center">
-                  "Jika seseorang menikah, maka ia telah menyempurnakan separuh agamanya. Karenanya,
-                  bertakwalah pada Allah pada separuh yang lainnya." (HR. Al Baihaqi dalam Syu'ab
-                  Al-Iman. Dishahihkan oleh Syaikh Al Albani dalam As Silsilah Ash Shahihah no. 625)
-                </p>
+                <div className=" bg-[#eed67e] flex flex-col items-center justify-center gap-10 rounded-full m-1 max-w-[450px] h-[800px] w-[90%] p-2 shadow-2xl">
+                  <p className="text-md font-inter text-center">
+                    Dari Anas bin Malik radhiyallahu 'anhu, ia berkata bahwa Rasulullah shallallahu
+                    'alaihi wa sallam bersabda,
+                  </p>
+                  <p className="text-4xl font-noto text-center leading-loose">
+                    إِذَا تَزَوَّجَ الْعَبْدُ فَقَدْ كَمُلَ نِصْفَ الدِّينِ ، فَلْيَتَّقِ اللَّهَ
+                    فِي النِّصْفِ الْبَاقِي
+                  </p>
+                  <p className="text-md text-center">
+                    "Jika seseorang menikah, maka ia telah menyempurnakan separuh agamanya.
+                    Karenanya, bertakwalah pada Allah pada separuh yang lainnya." (HR. Al Baihaqi
+                    dalam Syu'ab Al-Iman. Dishahihkan oleh Syaikh Al Albani dalam As Silsilah Ash
+                    Shahihah no. 625)
+                  </p>
+                </div>
               </section>
               {/* SECTION MEMPELAI */}
 
@@ -80,7 +83,11 @@ function App() {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
-                <h2 className="text-3xl font-bold ">Mempelai</h2>
+                <h2 className="text-3xl font-bold ">
+                  Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i,
+                  teman sekaligus sahabat, untuk menghadiri acara kami
+                </h2>
+                <h2 className="text-3xl font-bold ">kedua mempelai</h2>
                 <div className="w-full flex flex-col items-center gap-3">
                   <div className="flex flex-col items-center justify-center font-inter">
                     <img
@@ -95,7 +102,7 @@ function App() {
                   </div>
                   <div className="flex w-full flex-row items-center justify-center gap-4">
                     <hr className="border-[1px] w-1/3 border-amber-950" />
-                    <p className="text-4xl font-gwendolyn font-semibold">dan </p>
+                    <p className="text-4xl font-gwendolyn font-semibold">dengan </p>
                     <hr className="border-[1px] w-1/3 border-amber-950" />
                   </div>
                   <div className="flex flex-col items-center justify-center font-inter">
@@ -117,9 +124,13 @@ function App() {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
-                <h2 className="text-3xl font-bold mb-4">Resepsi Pernikahan</h2>
-                <p className="text-md mb-4">Please let us know if you can attend.</p>
-                <button className="bg-primary text-white rounded px-4 py-2">RSVP Now</button>
+                <h2 className="text-3xl font-bold mb-4">Akad</h2>
+                <p className="text-md mb-4">Sabtu, 11 Januari 2025</p>
+                <p className="text-md mb-4">Pukul 08.00 WIB s/d Selesai</p>
+                <h2 className="text-3xl font-bold mb-4">Resepsi</h2>
+                <p className="text-md mb-4">Sabtu, 11 Januari 2025</p>
+                <p className="text-md mb-4">Pukul 10.00 WIB s/d Selesai</p>
+                <button className="bg-primary text-white rounded px-4 py-2">Map</button>
               </section>
 
               {/* SECTION RSVP*/}
@@ -128,8 +139,10 @@ function App() {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
-                <h2 className="text-3xl font-bold mb-4">RSVP</h2>
-                <p className="text-md mb-4">Please let us know if you can attend.</p>
+                <h2 className="text-3xl font-bold mb-4">Kehadiran</h2>
+                <p className="text-md mb-4">Kirimkan Doa & ucapan kepada kami</p>
+                {/* form  */}
+
                 <button className="bg-primary text-white rounded px-4 py-2">RSVP Now</button>
               </section>
               {/* SECTION TERIMAKASIH */}
@@ -167,9 +180,9 @@ const Cover: FC<PropsCover> = ({ onclick, name }) => {
           <section className=" flex flex-col justify-between items-center w-full gap-6">
             <img
               src={logoW}
-              className="w-20 h-20 "
+              className="w-16 h-16 "
             />
-            <p className="text-xl font-poppins font-medium">WEDDING INVITATION</p>
+            <p className="text-xl font-poppins font-medium -mt-3">WEDDING INVITATION</p>
             <p className=" font-bold font-gwendolyn text-6xl md:text-8xl">Ema & Fasya</p>
             {/* <div className=" bg-[#F4F4F4] w-1 h-32"></div> */}
             <div className="flex flex-col gap-3 items-center justify-center w-80 bg-black/5 rounded-lg p-3 mt-10 border border-[#F4F4F4]/50">
