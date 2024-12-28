@@ -4,6 +4,8 @@ import bgAtas from '../public/bg-image.png';
 import logoW from '../public/logo-white.png';
 
 import bgifc from '@/assets/bg-test-1.png';
+import bgsec from '@/assets/bg-sec-2.png';
+import bgtext from '@/assets/bg-test-2.png';
 import dos from '@/assets/bg-text-2.png';
 import empic from '@/assets/fs-2.png';
 import faspic from '@/assets/fs-1.png';
@@ -57,10 +59,10 @@ function App() {
               {/* SECTION AYAT */}
 
               <section
-                style={{ backgroundImage: `url(${dos})` }}
+                style={{ backgroundImage: `url(${bgsec})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center gap-3 "
               >
-                <div className=" bg-[#eed67e] flex flex-col items-center justify-center gap-10 rounded-full m-1 max-w-[450px] h-[800px] w-[90%] p-2 shadow-2xl">
+                {/* <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-10 rounded-full m-1 max-w-[400px] h-[400px]  p-2 shadow-2xl hidden!">
                   <p className="text-md font-inter text-center">
                     Dari Anas bin Malik radhiyallahu 'anhu, ia berkata bahwa Rasulullah shallallahu
                     'alaihi wa sallam bersabda,
@@ -75,7 +77,7 @@ function App() {
                     dalam Syu'ab Al-Iman. Dishahihkan oleh Syaikh Al Albani dalam As Silsilah Ash
                     Shahihah no. 625)
                   </p>
-                </div>
+                </div> */}
               </section>
               {/* SECTION MEMPELAI */}
 
