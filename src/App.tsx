@@ -4,12 +4,14 @@ import bgAtas from '../public/bg-image.png';
 import logoW from '../public/logo-white.png';
 
 import bgifc from '@/assets/bg-test-1.png';
-import bgsec from '@/assets/bg-sec-2.png';
-import bgtext from '@/assets/bg-test-2.png';
+import orUp from '@/assets/orname-1.png';
+import orDown from '@/assets/orname-2.png';
 import dos from '@/assets/bg-text-2.png';
 import empic from '@/assets/fs-2.png';
 import faspic from '@/assets/fs-1.png';
-import { SendHorizonal } from 'lucide-react';
+import image1 from '@/assets/image-1.png';
+import image2 from '@/assets/image-2.png';
+import { Map, SendHorizonal } from 'lucide-react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 
 const Router = () => {
@@ -59,16 +61,21 @@ function App() {
               {/* SECTION AYAT */}
 
               <section
-                style={{ backgroundImage: `url(${bgsec})` }}
+                style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center gap-3 "
               >
-                {/* <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-10 rounded-full m-1 max-w-[400px] h-[400px]  p-2 shadow-2xl hidden!">
+                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-9 rounded-full m-1 max-w-[450px] h-[800px]  p-5 shadow-2xl hidden!">
+                  <img
+                    src={orUp}
+                    alt=""
+                    className="w-2/3"
+                  />
                   <p className="text-md font-inter text-center">
                     Dari Anas bin Malik radhiyallahu 'anhu, ia berkata bahwa Rasulullah shallallahu
                     'alaihi wa sallam bersabda,
                   </p>
                   <p className="text-4xl font-noto text-center leading-loose">
-                    إِذَا تَزَوَّجَ الْعَبْدُ فَقَدْ كَمُلَ نِصْفَ الدِّينِ ، فَلْيَتَّقِ اللَّهَ
+                    إِذَا تَزَوَّجَ الْعَبْدُ فَقَدِ اسْتَكْمَلَ نِصْفُ الدِّيْنِ فَلْيَتَّقِ اللهَ
                     فِي النِّصْفِ الْبَاقِي
                   </p>
                   <p className="text-md text-center">
@@ -77,7 +84,12 @@ function App() {
                     dalam Syu'ab Al-Iman. Dishahihkan oleh Syaikh Al Albani dalam As Silsilah Ash
                     Shahihah no. 625)
                   </p>
-                </div> */}
+                  <img
+                    src={orDown}
+                    alt=""
+                    className="w-2/3"
+                  />
+                </div>
               </section>
               {/* SECTION MEMPELAI */}
 
@@ -85,24 +97,29 @@ function App() {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
-                <h2 className="text-3xl font-bold ">
-                  Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i,
-                  teman sekaligus sahabat, untuk menghadiri acara kami
-                </h2>
-                <h2 className="text-3xl font-bold ">kedua mempelai</h2>
-                <div className="w-full flex flex-col items-center gap-3">
+                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center  rounded-full m-1 max-w-[450px] h-[850px]  px-5 shadow-2xl hidden!">
+                  <img
+                    src={orUp}
+                    alt=""
+                    className="w-2/5 mb-3"
+                  />
+                  <p className="text-xs font-bold text-center px-10">
+                    Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i,
+                    teman sekaligus sahabat, untuk menghadiri acara pernikahan Kami
+                  </p>
                   <div className="flex flex-col items-center justify-center font-inter">
                     <img
                       src={empic}
                       alt=""
-                      className="w-2/3"
+                      className="w-[90%]"
                     />
+
                     <p className="text-4xl font-semibold font-gwendolyn">Ema Safitri</p>
-                    <p className="text-base mt-2 font-medium text-center">
+                    <p className="text-xs mt-2 font-medium text-center">
                       Putri dari Bapak Ambarwat dan Ibu Samiyem
                     </p>
                   </div>
-                  <div className="flex w-full flex-row items-center justify-center gap-4">
+                  <div className="flex w-full flex-row items-center justify-center gap-2">
                     <hr className="border-[1px] w-1/3 border-amber-950" />
                     <p className="text-4xl font-gwendolyn font-semibold">dengan </p>
                     <hr className="border-[1px] w-1/3 border-amber-950" />
@@ -111,14 +128,19 @@ function App() {
                     <img
                       src={faspic}
                       alt=""
-                      className="w-2/3"
+                      className="w-[90%]"
                     />
                     <p className="text-4xl font-semibold font-gwendolyn">Labaik Fasya Asil Say</p>
-                    <p className="text-base mt-2 font-medium text-center">
+                    <p className="text-xs mt-2 font-medium text-center">
                       Putra dari Bapak Mustaqim dan Ibu Siti Rokhimah
                     </p>
                   </div>
-                </div>
+                  <img
+                    src={orDown}
+                    alt=""
+                    className="w-2/5 mt-3"
+                  />
+                </div>{' '}
               </section>
               {/* SECTION ACARA*/}
 
@@ -126,13 +148,49 @@ function App() {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
-                <h2 className="text-3xl font-bold mb-4">Akad</h2>
-                <p className="text-md mb-4">Sabtu, 11 Januari 2025</p>
-                <p className="text-md mb-4">Pukul 08.00 WIB s/d Selesai</p>
-                <h2 className="text-3xl font-bold mb-4">Resepsi</h2>
-                <p className="text-md mb-4">Sabtu, 11 Januari 2025</p>
-                <p className="text-md mb-4">Pukul 10.00 WIB s/d Selesai</p>
-                <button className="bg-primary text-white rounded px-4 py-2">Map</button>
+                <div className=" bg-[#EFDA8D] w-full flex flex-col items-center justify-center gap-9 rounded-full m-1 max-w-[450px] h-[800px]  p-5 shadow-2xl hidden!">
+                  <img
+                    src={orUp}
+                    alt=""
+                    className="w-2/3"
+                  />{' '}
+                  <div className="flex justiy-center items-center flex-col gap-2">
+                    <div className="w-full flex flex-col items-center justify-center gap-3 px-5 mb-5">
+                      <h2 className="text-2xl font-bold">AKAD NIKAH</h2>
+                      <hr className="border-[1px] w-2/4 border-amber-950" />
+
+                      <p className="text-md ">Sabtu, 11 Januari 2025</p>
+                      <p className="text-md ">Khusus Keluarga</p>
+                    </div>
+                    <div className="w-full flex flex-col items-center justify-center gap-3 px-5 mb-5">
+                      <h2 className="text-2xl font-bold ">RESERPSI</h2>
+                      <hr className="border-[1px] w-2/4 border-amber-950" />
+
+                      <p className="text-md ">Sabtu, 11 Januari 2025</p>
+                      <p className="text-md ">Pukul 10.00 WIB s/d Selesai</p>
+                      <p className="text-md text-center">
+                        {' '}
+                        Pendopo Djowitan, <br />
+                        Jl. Patangpuluhan No.20, Wirobrajan, Kota Yogyakarta, Daerah Istimewa
+                        Yogyakarta 55252
+                      </p>
+                    </div>
+                  </div>
+                  <a
+                    href="https://maps.app.goo.gl/UEKGWtbN9sWrasxb8"
+                    target="_blank"
+                    className="bg-primary text-white rounded px-4 py-2 flex items-center gap-2"
+                  >
+                    {' '}
+                    <Map />
+                    Peta Lokasi
+                  </a>
+                  <img
+                    src={orDown}
+                    alt=""
+                    className="w-2/3"
+                  />
+                </div>
               </section>
 
               {/* SECTION RSVP*/}
@@ -153,9 +211,22 @@ function App() {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
-                <h2 className="text-3xl font-bold mb-4">RSVP</h2>
-                <p className="text-md mb-4">Please let us know if you can attend.</p>
-                <button className="bg-primary text-white rounded px-4 py-2">RSVP Now</button>
+                <div className="w-full h-full flex flex-col items-center justify-center gap-3">
+                  <div className="w-[90%] h-max flex gap-5 flex-col max-w-[450px] shadow-2xl bg-[#EFDA8D] p-2 rounded-xl">
+                    <img
+                      src={image1}
+                      alt=""
+                      className="w-full shadow-xl rounded-xl "
+                    />
+                  </div>
+                  <div className="w-[90%] h-max flex gap-5 flex-col max-w-[450px] shadow-2xl bg-[#EFDA8D] p-2 rounded-xl">
+                    <img
+                      src={image2}
+                      alt=""
+                      className="w-full shadow-xl rounded-xl"
+                    />
+                  </div>
+                </div>
               </section>
             </div>
           </div>
