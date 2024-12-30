@@ -1,4 +1,5 @@
-import { FC, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FC, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import bgAtas from '../public/bg-image.png';
 import logoW from '../public/logo-white.png';
@@ -13,6 +14,19 @@ import image1 from '@/assets/image-1.png';
 import image2 from '@/assets/image-2.png';
 import { Map, SendHorizonal } from 'lucide-react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Api from './Api';
+import { Input } from './components/ui/input';
+import { Textarea } from './components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './components/ui/select';
 
 const Router = () => {
   return (
@@ -27,12 +41,69 @@ const Router = () => {
   );
 };
 
+const formSchema = z.object({
+  nama: z.string().nonempty('Nama wajib diisi'),
+  alamat: z.string().nonempty('Alamat wajib diisi'),
+  kehadiran: z.string().nonempty('Kehadiran wajib diisi'),
+  jumlah: z.string().regex(/^\d+$/, 'Jumlah harus berupa angka').nonempty('Jumlah wajib diisi'),
+  komentar: z.string(), // Komentar tidak wajib
+});
+export type FormSchema = z.infer<typeof formSchema>;
+
 function App() {
   const [opened, setOpened] = useState(false);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const initialName = queryParams.get('name') || '';
 
+  const [data, setData] = useState<any[]>([]); // State untuk menyimpan data
+  const [loading, setLoading] = useState(false); // State untuk loading
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
+  });
+
+  const onSubmit = async (data: FormSchema) => {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      if (value !== undefined) {
+        formData.append(key, value.toString());
+      }
+    });
+
+    Api.PostTask(formData)
+      .then((res) => {
+        console.log('Response:', res.data);
+        reset();
+        fetchData();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await Api.GetTask();
+      console.log(response.data);
+      setData(response.data.data); // Sesuaikan sesuai struktur respons API
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // Panggil data saat komponen di-render
+  }, []);
   return (
     <>
       {!opened ? (
@@ -64,25 +135,23 @@ function App() {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center gap-3 "
               >
-                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-9 rounded-full m-1 max-w-[450px] h-[800px]  p-5 shadow-2xl hidden!">
+                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-9 rounded-full m-1 max-w-[450px] h-[750px]  p-5 shadow-2xl hidden!">
                   <img
                     src={orUp}
                     alt=""
                     className="w-2/3"
                   />
-                  <p className="text-md font-inter text-center">
+                  <p className="text-sm font-inter text-center">
                     Dari Anas bin Malik radhiyallahu 'anhu, ia berkata bahwa Rasulullah shallallahu
                     'alaihi wa sallam bersabda,
                   </p>
-                  <p className="text-4xl font-noto text-center leading-loose">
+                  <p className="text-3xl font-noto text-center leading-loose">
                     إِذَا تَزَوَّجَ الْعَبْدُ فَقَدِ اسْتَكْمَلَ نِصْفُ الدِّيْنِ فَلْيَتَّقِ اللهَ
                     فِي النِّصْفِ الْبَاقِي
                   </p>
-                  <p className="text-md text-center">
+                  <p className="text-sm text-center">
                     "Jika seseorang menikah, maka ia telah menyempurnakan separuh agamanya.
-                    Karenanya, bertakwalah pada Allah pada separuh yang lainnya." (HR. Al Baihaqi
-                    dalam Syu'ab Al-Iman. Dishahihkan oleh Syaikh Al Albani dalam As Silsilah Ash
-                    Shahihah no. 625)
+                    Karenanya, bertakwalah pada Allah pada separuh yang lainnya." (HR. Al Baihaqi)
                   </p>
                   <img
                     src={orDown}
@@ -199,13 +268,147 @@ function App() {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
-                <h2 className="text-3xl font-bold mb-4">Kehadiran</h2>
-                <p className="text-md mb-4">Kirimkan Doa & ucapan kepada kami</p>
-                {/* form  */}
+                <div className="w-full h-full flex flex-col items-center justify-center gap-3">
+                  <div className="w-[90%] h-max flex gap-5 flex-col max-w-[450px] shadow-2xl bg-[#EFDA8D] p-2 rounded-xl">
+                    <h2 className="text-3xl font-bold mb-4">Kehadiran</h2>
+                    <p className="text-md mb-4">Kirimkan Doa & ucapan kepada kami</p>
+                  </div>
+                  <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="space-y-4"
+                  >
+                    {/* Nama */}
+                    <div>
+                      <label
+                        htmlFor="nama"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Nama
+                      </label>
+                      <Input
+                        id="nama"
+                        placeholder="Nama"
+                        {...register('nama')}
+                      />
+                      {errors.nama && <p className="text-red-500">{errors.nama.message}</p>}
+                    </div>
 
-                <button className="bg-primary text-white rounded px-4 py-2">RSVP Now</button>
+                    {/* Alamat */}
+                    <div>
+                      <label
+                        htmlFor="alamat"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Alamat
+                      </label>
+                      <Textarea
+                        id="alamat"
+                        placeholder="Alamat"
+                        {...register('alamat')}
+                      />
+                      {errors.alamat && <p className="text-red-500">{errors.alamat.message}</p>}
+                    </div>
+
+                    {/* Kehadiran */}
+                    <div>
+                      <label
+                        htmlFor="kehadiran"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Kehadiran
+                      </label>
+                      <Select
+                        onValueChange={(value) => setValue('kehadiran', value)}
+                        defaultValue=""
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Pilih Kehadiran" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Hadir">Hadir</SelectItem>
+                          <SelectItem value="Tidak Hadir">Tidak Hadir</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      {errors.kehadiran && (
+                        <p className="text-red-500">{errors.kehadiran.message}</p>
+                      )}
+                    </div>
+
+                    {/* Jumlah */}
+                    <div>
+                      <label
+                        htmlFor="jumlah"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Jumlah
+                      </label>
+                      <Input
+                        id="jumlah"
+                        placeholder="Jumlah"
+                        {...register('jumlah')}
+                      />
+                      {errors.jumlah && <p className="text-red-500">{errors.jumlah.message}</p>}
+                    </div>
+
+                    {/* Komentar */}
+                    <div>
+                      <label
+                        htmlFor="komentar"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Komentar
+                      </label>
+                      <Textarea
+                        id="komentar"
+                        placeholder="Komentar (opsional)"
+                        {...register('komentar')}
+                      />
+                      {errors.komentar && <p className="text-red-500">{errors.komentar.message}</p>}
+                    </div>
+
+                    {/* Tombol Kirim */}
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Mengirim...' : 'Kirim'}
+                    </Button>
+                  </form>
+
+                  <div className="space-y-4">
+                    <h2 className="text-lg font-medium">Daftar Obrolan</h2>
+                    {loading ? (
+                      <p>Loading...</p>
+                    ) : data.length === 0 ? (
+                      <p>Tidak ada data yang tersedia.</p>
+                    ) : (
+                      <div className="space-y-4">
+                        {data.map((item, index) => (
+                          <div
+                            key={index}
+                            className={`flex ${
+                              item.kehadiran === 'Hadir' ? 'justify-end' : 'justify-start'
+                            }`}
+                          >
+                            <div
+                              className={`p-4 max-w-xs rounded-lg ${
+                                item.kehadiran === 'Hadir'
+                                  ? 'bg-blue-500 text-white'
+                                  : 'bg-gray-200 text-gray-800'
+                              }`}
+                            >
+                              <p className="font-bold">{item.nama}</p>
+
+                              {item.komentar && <p>Komentar: {item.komentar}</p>}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </section>
-              {/* SECTION TERIMAKASIH */}
+              {/* SECTION Galeri */}
 
               <section
                 style={{ backgroundImage: `url(${dos})` }}
