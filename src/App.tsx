@@ -20,6 +20,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Api from './Api';
 import { Input } from './components/ui/input';
 import { Textarea } from './components/ui/textarea';
+import { format } from 'date-fns';
+import { id } from 'date-fns/locale';
 import {
   Select,
   SelectContent,
@@ -43,7 +45,7 @@ const Router = () => {
 
 const formSchema = z.object({
   nama: z.string().nonempty('Nama wajib diisi'),
-  alamat: z.string().nonempty('Alamat wajib diisi'),
+  alamat: z.string(),
   kehadiran: z.string().nonempty('Kehadiran wajib diisi'),
   jumlah: z.string().regex(/^\d+$/, 'Jumlah harus berupa angka').nonempty('Jumlah wajib diisi'),
   komentar: z.string(), // Komentar tidak wajib
@@ -102,13 +104,17 @@ function App() {
   };
 
   useEffect(() => {
-    fetchData(); // Panggil data saat komponen di-render
+    fetchData();
+    // Panggil data saat komponen di-render
   }, []);
   return (
     <>
       {!opened ? (
         <Cover
-          onclick={() => setOpened(true)}
+          onclick={() => {
+            setOpened(true);
+            setValue('nama', initialName);
+          }}
           name={initialName}
         />
       ) : (
@@ -269,145 +275,166 @@ function App() {
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
                 <div className="w-full h-full flex flex-col items-center justify-center gap-3">
-                  <div className="w-[90%] h-max flex gap-5 flex-col max-w-[450px] shadow-2xl bg-[#EFDA8D] p-2 rounded-xl">
-                    <h2 className="text-3xl font-bold mb-4">Kehadiran</h2>
-                    <p className="text-md mb-4">Kirimkan Doa & ucapan kepada kami</p>
-                  </div>
-                  <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="space-y-4"
-                  >
-                    {/* Nama */}
-                    <div>
-                      <label
-                        htmlFor="nama"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Nama
-                      </label>
-                      <Input
-                        id="nama"
-                        placeholder="Nama"
-                        {...register('nama')}
-                      />
-                      {errors.nama && <p className="text-red-500">{errors.nama.message}</p>}
+                  <div className="w-[90%] max-w-[400px] h-[750px] shadow-md bg-[#EFDA8D] p-4 rounded-full text-cente flex flex-col items-center justify-center gap-5">
+                    <img
+                      src={orUp}
+                      alt=""
+                      className="w-2/5"
+                    />{' '}
+                    <div className="text-center">
+                      <h2 className="text-2xl font-semibold">Kehadiran</h2>
+                      <p className="text-sm">Beritahu kami kehadiran anda,</p>
                     </div>
-
-                    {/* Alamat */}
-                    <div>
-                      <label
-                        htmlFor="alamat"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Alamat
-                      </label>
-                      <Textarea
-                        id="alamat"
-                        placeholder="Alamat"
-                        {...register('alamat')}
-                      />
-                      {errors.alamat && <p className="text-red-500">{errors.alamat.message}</p>}
-                    </div>
-
-                    {/* Kehadiran */}
-                    <div>
-                      <label
-                        htmlFor="kehadiran"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Kehadiran
-                      </label>
-                      <Select
-                        onValueChange={(value) => setValue('kehadiran', value)}
-                        defaultValue=""
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Pilih Kehadiran" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Hadir">Hadir</SelectItem>
-                          <SelectItem value="Tidak Hadir">Tidak Hadir</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      {errors.kehadiran && (
-                        <p className="text-red-500">{errors.kehadiran.message}</p>
-                      )}
-                    </div>
-
-                    {/* Jumlah */}
-                    <div>
-                      <label
-                        htmlFor="jumlah"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Jumlah
-                      </label>
-                      <Input
-                        id="jumlah"
-                        placeholder="Jumlah"
-                        {...register('jumlah')}
-                      />
-                      {errors.jumlah && <p className="text-red-500">{errors.jumlah.message}</p>}
-                    </div>
-
-                    {/* Komentar */}
-                    <div>
-                      <label
-                        htmlFor="komentar"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Komentar
-                      </label>
-                      <Textarea
-                        id="komentar"
-                        placeholder="Komentar (opsional)"
-                        {...register('komentar')}
-                      />
-                      {errors.komentar && <p className="text-red-500">{errors.komentar.message}</p>}
-                    </div>
-
-                    {/* Tombol Kirim */}
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
+                    <form
+                      onSubmit={handleSubmit(onSubmit)}
+                      className="space-y-3 w-[90%] max-w-[400px] "
                     >
-                      {isSubmitting ? 'Mengirim...' : 'Kirim'}
-                    </Button>
-                  </form>
-
-                  <div className="space-y-4">
-                    <h2 className="text-lg font-medium">Daftar Obrolan</h2>
-                    {loading ? (
-                      <p>Loading...</p>
-                    ) : data.length === 0 ? (
-                      <p>Tidak ada data yang tersedia.</p>
-                    ) : (
-                      <div className="space-y-4">
-                        {data.map((item, index) => (
-                          <div
-                            key={index}
-                            className={`flex ${
-                              item.kehadiran === 'Hadir' ? 'justify-end' : 'justify-start'
-                            }`}
-                          >
-                            <div
-                              className={`p-4 max-w-xs rounded-lg ${
-                                item.kehadiran === 'Hadir'
-                                  ? 'bg-blue-500 text-white'
-                                  : 'bg-gray-200 text-gray-800'
-                              }`}
-                            >
-                              <p className="font-bold">{item.nama}</p>
-
-                              {item.komentar && <p>Komentar: {item.komentar}</p>}
-                            </div>
-                          </div>
-                        ))}
+                      <div>
+                        <Input
+                          className="h-8"
+                          id="nama"
+                          placeholder="Nama"
+                          {...register('nama')}
+                        />
+                        {errors.nama && (
+                          <p className="text-red-500 text-xs">{errors.nama.message}</p>
+                        )}
                       </div>
-                    )}
+
+                      <div>
+                        <Textarea
+                          id="alamat"
+                          placeholder="Alamat (opsional)"
+                          {...register('alamat')}
+                        />
+                        {errors.alamat && (
+                          <p className="text-red-500 text-xs">{errors.alamat.message}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Select
+                          onValueChange={(value) => setValue('kehadiran', value)}
+                          defaultValue=""
+                        >
+                          <SelectTrigger className="h-8">
+                            <SelectValue placeholder="Pilih Kehadiran" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Hadir">Hadir</SelectItem>
+                            <SelectItem value="Tidak Hadir">Tidak Hadir</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        {errors.kehadiran && (
+                          <p className="text-red-500 text-xs">{errors.kehadiran.message}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Input
+                          id="jumlah"
+                          placeholder="Jumlah"
+                          className="h-8"
+                          {...register('jumlah')}
+                        />
+                        {errors.jumlah && (
+                          <p className="text-red-500 text-xs">{errors.jumlah.message}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Textarea
+                          id="komentar"
+                          placeholder="Komentar (opsional)"
+                          className="h-8"
+                          {...register('komentar')}
+                        />
+                        {errors.komentar && (
+                          <p className="text-red-500 text-xs">{errors.komentar.message}</p>
+                        )}
+                      </div>
+
+                      <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? 'Mengirim...' : 'Kirim'}
+                      </Button>
+                    </form>
+                    <img
+                      src={orDown}
+                      alt=""
+                      className="w-2/5"
+                    />
                   </div>
                 </div>
               </section>
+
+              {/* SECTION Komentar anda*/}
+
+              <section
+                style={{ backgroundImage: `url(${dos})` }}
+                className="snap-start min-h-screen flex flex-col justify-center items-center"
+              >
+                <div className="w-full h-full flex flex-col items-center justify-center gap-3">
+                  <div className="w-[90%] max-w-[400px] h-[750px] shadow-md bg-[#EFDA8D] p-4 rounded-full text-cente flex flex-col items-center justify-center gap-5">
+                    <img
+                      src={orUp}
+                      alt=""
+                      className="w-2/5"
+                    />{' '}
+                    <div className="text-center">
+                      <h2 className="text-2xl font-semibold">Terimakasih</h2>
+                      <p className="text-sm">Ucapan, Salam dan doa-doa anda</p>
+                    </div>
+                    <div className="w-full max-h-[400px] overflow-y-auto bg-white rounded-lg p-4">
+                      {loading ? (
+                        <p className="text-sm">Loading...</p>
+                      ) : data.length === 0 ? (
+                        <p className="text-sm">Tidak ada data yang tersedia.</p>
+                      ) : (
+                        <div className="space-y-4">
+                          {data.map((item, index) => (
+                            <div
+                              key={index}
+                              className="p-3 bg-gray-100 rounded-lg shadow-sm flex items-start gap-3"
+                            >
+                              {/* Indikator Kehadiran */}
+                              {/* <div
+                                className={`w-3 h-3 rounded-full mt-1 ${
+                                  item.kehadiran === 'Hadir' ? 'bg-green-500' : 'bg-gray-400'
+                                }`}
+                              ></div> */}
+
+                              {/* Konten Komentar */}
+                              <div>
+                                <p className="font-semibold text-gray-800">
+                                  {item.nama}{' '}
+                                  <span className="text-xs text-gray-500">
+                                    {format(new Date(item.timestamp), 'dd MMMM yyyy, HH:mm', {
+                                      locale: id,
+                                    })}
+                                  </span>
+                                </p>
+                                <p className="text-sm text-gray-700 mt-1">
+                                  {item.komentar || 'Tidak ada komentar'}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <img
+                      src={orDown}
+                      alt=""
+                      className="w-2/5"
+                    />
+                  </div>
+                </div>
+              </section>
+
               {/* SECTION Galeri */}
 
               <section
