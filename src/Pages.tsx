@@ -100,6 +100,7 @@ const Pages = () => {
           onclick={() => {
             setOpened(true);
             setValue('nama', initialName);
+            setValue('alamat', '');
           }}
           name={initialName}
         />
@@ -127,7 +128,7 @@ const Pages = () => {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center  "
               >
-                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-5 md:gap-9 rounded-[400px]  m-1 max-w-[450px] h-[520px] sm:h-[750px] p-5 shadow-2xl">
+                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-5 md:gap-9 rounded-[50px]  m-1 max-w-[450px] h-[520px] sm:h-[750px] p-5 shadow-2xl">
                   <img
                     src={orUp}
                     alt=""
@@ -158,7 +159,7 @@ const Pages = () => {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
-                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-5 md:gap-9 rounded-[400px] m-1 max-w-[450px] h-[580px] sm:h-[750px] p-5 shadow-2xl">
+                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-5 md:gap-9 rounded-[50px] m-1 max-w-[450px] h-[580px] sm:h-[750px] p-5 shadow-2xl">
                   <div className="flex flex-col items-center">
                     <img
                       src={orUp}
@@ -214,13 +215,13 @@ const Pages = () => {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
-                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-5 md:gap-9 rounded-[400px] m-1 max-w-[450px] h-[580px] sm:h-[750px] p-5 shadow-2xl">
+                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-5 md:gap-9 rounded-[50px] m-1 max-w-[450px] h-[580px] sm:h-[750px] p-5 shadow-2xl">
                   <img
                     src={orUp}
                     alt=""
                     className="w-2/5 sm:w-2/3"
                   />{' '}
-                  <div className="flex justiy-center items-center flex-col gap-2">
+                  <div className="flex justiy-center items-center flex-col gap-2 ">
                     <div className="w-full flex flex-col items-center justify-center gap-2 sm:gap-3 px-5 mb-5">
                       <h2 className="text-xl sm:text-2xl font-bold">AKAD NIKAH</h2>
                       <hr className="border-[1px] w-2/4 border-amber-950" />
@@ -265,19 +266,19 @@ const Pages = () => {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
-                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-5 md:gap-9 rounded-[400px] m-1 max-w-[450px] h-[580px] sm:h-[750px] p-5 shadow-2xl">
+                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-5 md:gap-9 rounded-[50px] m-1 max-w-[450px] h-[580px] sm:h-[750px] p-5 shadow-2xl">
                   <img
                     src={orUp}
                     alt=""
-                    className="w-2/5"
+                    className="w-2/5 sm:w-2/3"
                   />{' '}
-                  <div className="text-center ">
+                  <div className="text-center flex gap-1 flex-col w-full ">
                     <h2 className="text-2xl font-semibold">Kehadiran</h2>
                     <p className="text-sm">Beritahu kami kehadiran anda,</p>
                   </div>
                   <form
                     onSubmit={handleSubmit(onSubmit)}
-                    className="space-y-3 w-full max-w-[450px] "
+                    className="space-y-3 w-full md:min-w-[410px]"
                   >
                     <div>
                       <Input
@@ -287,17 +288,6 @@ const Pages = () => {
                         {...register('nama')}
                       />
                       {errors.nama && <p className="text-red-500 text-xs">{errors.nama.message}</p>}
-                    </div>
-
-                    <div>
-                      <Textarea
-                        id="alamat"
-                        placeholder="Alamat (opsional)"
-                        {...register('alamat')}
-                      />
-                      {errors.alamat && (
-                        <p className="text-red-500 text-xs">{errors.alamat.message}</p>
-                      )}
                     </div>
 
                     <div>
@@ -354,7 +344,7 @@ const Pages = () => {
                   <img
                     src={orDown}
                     alt=""
-                    className="w-2/5"
+                    className="w-2/5 sm:w-2/3"
                   />
                 </div>
               </section>
@@ -365,7 +355,7 @@ const Pages = () => {
                 style={{ backgroundImage: `url(${dos})` }}
                 className="snap-start min-h-screen flex flex-col justify-center items-center"
               >
-                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-5 md:gap-9 rounded-[400px] m-1 max-w-[450px] h-[580px] sm:h-[750px] p-5 shadow-2xl">
+                <div className=" bg-[#EFDA8D] flex flex-col items-center justify-center gap-5 md:gap-9 rounded-[50px] m-1 max-w-[450px] h-[580px] sm:h-[750px] p-5 shadow-2xl">
                   <img
                     src={orUp}
                     alt=""
@@ -373,9 +363,9 @@ const Pages = () => {
                   />{' '}
                   <div className="text-center">
                     <h2 className="text-2xl font-semibold">Terimakasih</h2>
-                    <p className="text-sm">Ucapan, Salam dan doa-doa anda</p>
+                    <p className="text-sm">Ucapan, salam dan doa-doa anda</p>
                   </div>
-                  <div className="w-full max-h-[300px] sm:max-h-[400px] overflow-y-auto bg-white rounded-lg p-4">
+                  <div className="w-full max-h-[300px] sm:max-h-[400px] md:min-w-[410px] overflow-y-auto bg-white rounded-lg p-4">
                     {loading ? (
                       <p className="text-sm">Loading...</p>
                     ) : data.length === 0 ? (
@@ -390,7 +380,7 @@ const Pages = () => {
                             {/* Indikator Kehadiran */}
 
                             {/* Konten Komentar */}
-                            <div className="flex flex-col items-start gap-2">
+                            <div className="flex flex-col items-start gap-1">
                               <div className="flex gap-2 items-center">
                                 <p className="font-semibold text-gray-800">{item.nama} </p>
                                 <div
@@ -404,7 +394,7 @@ const Pages = () => {
                                   })}
                                 </p>
                               </div>
-                              <p className="text-sm text-gray-700 mt-1">
+                              <p className="text-sm text-gray-700 ">
                                 {item.komentar || 'Tidak ada komentar'}
                               </p>
                             </div>
@@ -428,16 +418,28 @@ const Pages = () => {
                 className="snap-start min-h-screen flex flex-col justify-between items-center"
               >
                 <div></div>
-                <div className="w-full h-full flex flex-col items-center justify-center gap-3">
-                  <h2 className="text-2xl ">Galeri</h2>
-
-                  <div className="w-[90%] h-max flex gap-5 flex-col max-w-[450px] shadow-2xl bg-[#EFDA8D] p-2 rounded-xl">
+                <div className="w-full bg-[#EFDA8D]  flex flex-col items-center justify-center gap-3 rounded-[50px] m-1 max-w-[450px] h-[660px] shadow-2xl">
+                  <img
+                    src={orUp}
+                    alt=""
+                    className="w-2/5"
+                  />{' '}
+                  <div className="text-center">
+                    <h2 className="text-2xl font-semibold">Galeri</h2>
+                    <p className="text-sm">Sedikit tentang kami</p>
+                  </div>
+                  <div className="w-full h-max flex gap-5 flex-col max-w-[450px]  bg-[#EFDA8D] p-2 rounded-xl">
                     <img
                       src={image1}
                       alt=""
                       className="w-full shadow-xl rounded-xl "
                     />
                   </div>
+                  <img
+                    src={orDown}
+                    alt=""
+                    className="w-2/5"
+                  />
                 </div>
                 <footer className="w-full text-black py-4 text-center">
                   <p>
