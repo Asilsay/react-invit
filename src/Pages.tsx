@@ -430,6 +430,8 @@ const Pages = () => {
               >
                 <div></div>
                 <div className="w-full h-full flex flex-col items-center justify-center gap-3">
+                  <h2 className="text-2xl ">Galeri</h2>
+
                   <div className="w-[90%] h-max flex gap-5 flex-col max-w-[450px] shadow-2xl bg-[#EFDA8D] p-2 rounded-xl">
                     <img
                       src={image1}
@@ -437,17 +439,9 @@ const Pages = () => {
                       className="w-full shadow-xl rounded-xl "
                     />
                   </div>
-                  <div className="w-[90%] h-max flex gap-5 flex-col max-w-[450px] shadow-2xl bg-[#EFDA8D] p-2 rounded-xl">
-                    <img
-                      src={image2}
-                      alt=""
-                      className="w-full shadow-xl rounded-xl"
-                    />
-                  </div>
                 </div>
                 <footer className="w-full text-black py-4 text-center">
                   <p>
-                    Karya{' '}
                     <a
                       href="https://instagram.com/asilsay"
                       target="_blank"
@@ -455,7 +449,7 @@ const Pages = () => {
                     >
                       asilsay
                     </a>{' '}
-                    dan{' '}
+                    &{' '}
                     <a
                       href="https://instagram.com/emasaf"
                       target="_blank"
