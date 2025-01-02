@@ -450,14 +450,10 @@ const Pages = () => {
                     <DrawerContent className="bg-[#4f4521] border-[#161308]">
                       <div className="mx-auto w-full max-w-sm ">
                         <div className="py-4 text-sm text-gray-200">
-                          <p className="font-semibold text-center mb-4">Credits</p>
+                          <p className="font-semibold text-center mb-4">
+                            Dipersembahkan oleh kami:
+                          </p>
                           <table className="w-full text-left border-collapse">
-                            <thead>
-                              <tr>
-                                <th className="border-b-[1px] font-medium">Role</th>
-                                <th className="border-b-[1px] font-medium">Contributor</th>
-                              </tr>
-                            </thead>
                             <tbody>
                               <tr>
                                 <td className="py-2">Illustrator</td>
@@ -472,7 +468,7 @@ const Pages = () => {
                                 </td>
                               </tr>
                               <tr>
-                                <td className="py-2">UI/UX Design</td>
+                                <td className="py-2">Photo editor</td>
                                 <td>
                                   <a
                                     href="https://instagram.com/emasaf"
@@ -484,7 +480,19 @@ const Pages = () => {
                                 </td>
                               </tr>
                               <tr>
-                                <td className="py-2">Development</td>
+                                <td className="py-2">UI/UX Design</td>
+                                <td>
+                                  <a
+                                    href="https://instagram.com/asilsay"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    asilsay
+                                  </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="py-2">Dev</td>
                                 <td>
                                   <a
                                     href="https://instagram.com/asilsay"
