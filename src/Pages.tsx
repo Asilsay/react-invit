@@ -28,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from './components/ui/select';
+import { Drawer, DrawerContent, DrawerTrigger } from './components/ui/drawer';
 
 const formSchema = z.object({
   nama: z.string().nonempty('Nama wajib diisi'),
@@ -441,25 +442,90 @@ const Pages = () => {
                     className="w-2/5"
                   />
                 </div>
-                <footer className="w-full text-black py-4 text-center">
-                  <p>
-                    <a
-                      href="https://instagram.com/asilsay"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      asilsay
-                    </a>{' '}
-                    &{' '}
-                    <a
-                      href="https://instagram.com/emasaf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      emasaf
-                    </a>
-                  </p>
-                </footer>
+                <div className="w-full text-black py-4 text-center ">
+                  <Drawer>
+                    <DrawerTrigger asChild>
+                      <Button variant="outline">Credit</Button>
+                    </DrawerTrigger>
+                    <DrawerContent className="bg-[#4f4521] border-[#161308]">
+                      <div className="mx-auto w-full max-w-sm ">
+                        <div className="py-4 text-sm text-gray-200">
+                          <p className="font-semibold text-center mb-4">Credits</p>
+                          <table className="w-full text-left border-collapse">
+                            <thead>
+                              <tr>
+                                <th className="border-b-[1px] font-medium">Role</th>
+                                <th className="border-b-[1px] font-medium">Contributor</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td className="py-2">Illustrator</td>
+                                <td>
+                                  <a
+                                    href="https://instagram.com/emasaf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    emasaf
+                                  </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="py-2">UI/UX Design</td>
+                                <td>
+                                  <a
+                                    href="https://instagram.com/emasaf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    emasaf
+                                  </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="py-2">Development</td>
+                                <td>
+                                  <a
+                                    href="https://instagram.com/asilsay"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    asilsay
+                                  </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="py-2">Background Assets</td>
+                                <td>
+                                  <a
+                                    href="https://www.freepik.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    Freepik
+                                  </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="py-2">Fonts</td>
+                                <td>
+                                  <a
+                                    href="https://fonts.google.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    Google Fonts
+                                  </a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </DrawerContent>
+                  </Drawer>
+                </div>
               </section>
             </div>
           </div>
