@@ -11,7 +11,6 @@ import dos from '@/assets/bg-text-2.png';
 import empic from '@/assets/fs-2.png';
 import faspic from '@/assets/fs-1.png';
 import image1 from '@/assets/image-1.png';
-import image2 from '@/assets/image-2.png';
 import { Map, SendHorizonal } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { z } from 'zod';
