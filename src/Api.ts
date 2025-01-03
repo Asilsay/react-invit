@@ -11,7 +11,7 @@ export default {
       url: '',
       data: data,
     }),
-  GetTask: (page = 1, perPage = 10) =>
+  GetTask: (page = 1, perPage = 50) =>
     instance({
       method: 'GET',
       url: '',

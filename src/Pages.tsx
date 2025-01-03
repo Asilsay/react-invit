@@ -41,6 +41,7 @@ export type FormSchema = z.infer<typeof formSchema>;
 
 const Pages = () => {
   const [opened, setOpened] = useState(false);
+  const [load, setLoad] = useState(false);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const initialName = queryParams.get('name') || '';
@@ -52,13 +53,14 @@ const Pages = () => {
     register,
     handleSubmit,
     setValue,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
   } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async (data: FormSchema) => {
+    setLoad(true);
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       if (value !== undefined) {
@@ -74,6 +76,9 @@ const Pages = () => {
       })
       .catch((error) => {
         console.error('Error:', error);
+      })
+      .finally(() => {
+        setLoad(false);
       });
   };
 
@@ -336,9 +341,9 @@ const Pages = () => {
                       <Button
                         type="submit"
                         className=" w-20"
-                        disabled={isSubmitting}
+                        disabled={load}
                       >
-                        {isSubmitting ? 'Mengirim...' : 'Kirim'}
+                        {load ? 'Mengirim...' : 'Kirim'}
                       </Button>
                     </div>
                   </form>
